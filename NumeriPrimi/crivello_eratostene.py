@@ -51,7 +51,7 @@ def make_prime_gpt(n: int) -> None:
 # print(f"{time.time() - start1} -- PRIMA VERSIONE")
 
 start1 = time.time()    
-make_prime_gpt(1_000_000_000)  
+make_prime_gpt(1_000_000)  
 print(f"{time.time() - start1} -- VERSIONE GPT")
                 
 

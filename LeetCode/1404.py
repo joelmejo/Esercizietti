@@ -1,3 +1,6 @@
+# 1404
+# Number of Steps to Reduce a Number in Binary Representation to One
+
 def numSteps(s: str) -> int:
         lista: list = list(s)
         steps: int = 0
