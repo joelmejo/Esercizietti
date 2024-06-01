@@ -38,21 +38,16 @@ def intToRoman(num: int) -> str:
     ["M", 1000]
     ]
     roman: str= ""
-    for i in reversed(range(len(roman_numerals))):
-        listed_num: list = list(str(num))
-        if listed_num[0] in ['4', '9']:
-            if listed_num[0] == '9':
-                if num - roman_numerals[i][1] < 0:
-                    if num - roman_numerals[i - 2][1] > 0:
-                        num -= (roman_numerals[i][1] - roman_numerals[i - 2][1])
-                        roman += roman_numerals[i - 2][0] + roman_numerals[i][0]
-                        continue
+    listed_num: list = list(str(num))
+    listed_num.reverse()
+    for i, j in zip(range(len(roman_numerals)), range(len(listed_num))):
+        if listed_num[j] in ['4', '9']:
+            if listed_num[j] == '4':
+                num -= (roman_numerals[i + 1][1] - roman_numerals[i][1])
+                roman = roman_numerals[i][0] + roman_numerals[i + 1][0] + roman
             else:
-                if num - roman_numerals[i][1] < 0:
-                    if num - roman_numerals[i - 1][1] > 0:
-                        num -= (roman_numerals[i][1] - roman_numerals[i - 1][1])
-                        roman += roman_numerals[i - 1][0] + roman_numerals[i][0]
-                        continue
+                num -= (roman_numerals[i + 2][1] - roman_numerals[i][1])
+                roman = roman_numerals[i][0] + roman_numerals[i + 2][0] + roman
         else:
             while num - roman_numerals[i][1] >= 0:
                 num -= roman_numerals[i][1]
@@ -60,7 +55,39 @@ def intToRoman(num: int) -> str:
     return roman
 
 
-print(intToRoman(999))
+
+        
+        
+
+    #     listed_num: list = list(str(num))
+    #     if listed_num[0] in ['4', '9']:
+    #         listed_roman: list= list(str(roman_numerals[i][1]))
+    #         if listed_num[0] == '9':
+    #             if listed_roman[0] == '5':
+    #                 if num - roman_numerals[i + 1][1] < 0:
+    #                     if num - roman_numerals[i - 1][1] > 0:
+    #                         num -= (roman_numerals[i][1] - roman_numerals[i - 1][1])
+    #                         roman += roman_numerals[i - 1][0] + roman_numerals[i][0]
+    #                         continue
+    #             else:
+    #                 continue
+    #         else:
+    #             if listed_roman[0] == '1':
+    #                 if num - roman_numerals[i + 1][1] < 0:
+    #                     if num - roman_numerals[i - 1][1] > 0:
+    #                         num -= (roman_numerals[i + 1][1] - roman_numerals[i - 1][1])
+    #                         roman += roman_numerals[i - 1][0] + roman_numerals[i + 1][0]
+    #                         continue
+    #     else:
+    #         while num - roman_numerals[i][1] >= 0:
+    #             num -= roman_numerals[i][1]
+    #             roman += roman_numerals[i][0]
+    # return roman
+
+      
+
+
+print(intToRoman(3999))
 # Example 1:
 # 3999
 # Input: num = 3749
