@@ -27,7 +27,7 @@
 
 # Given an integer, convert it to a Roman numeral.
 
-def intToRoman(num: int) -> str:
+def intToRoman(n: int) -> str:
     roman_numerals: dict[int, str] = {
     1: "I",
     5: "V",
@@ -38,9 +38,12 @@ def intToRoman(num: int) -> str:
     1000: "M"
 }
     roman: str= ""
-    listed_num: list = list(str(num))
+    listed_num: list = list(str(n))
     for value, symbol in reversed(roman_numerals.items()):
-        
+        count = n // value
+        if count > 0:
+            roman += symbol * count
+            n %= value
       
 
 
