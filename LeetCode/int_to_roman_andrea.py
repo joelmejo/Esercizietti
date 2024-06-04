@@ -1,24 +1,30 @@
-from math import log10, floor
-def int_to_roman(n: int) -> str:
-  if n > 3999:
-    return
-  roman_number = ""
-  roman_symbols = [["I", 1], ["V", 5], ["X", 10], ["L", 50], ["C", 100], ["D", 500], ["M", 1000]] 
-  roman_symbols.reverse()
-  for symbol, value in roman_symbols:
-    symbol_count = n // value
-    if value - n < 10 ** floor(log10(max(1, value - 1))):
-      for symbol2, value in roman_symbols:
-        if value == 10 ** floor(log10(max(1, value - 1))):
-          roman_number += symbol2
-        roman_number += symbol
-    roman_number += symbol * symbol_count
-    n %= value
-  print(roman_number)
+from math import floor, log10
 
-int_to_roman(4)
-      
-      
-      
-      
-    
+
+def int_to_roman(n: int) -> str:
+  roman_numbers = {
+      1: "I",
+      5: "V",
+      10: "X",
+      50: "L",
+      100: "C",
+      500: "D",
+      1000: "M"
+  }
+  result = ""
+  for value, symbol in reversed(roman_numbers.items()):
+    count = n // value
+    if count > 0:
+      result += symbol * count
+      n %= value
+    power_of_ten = 10**floor(log10(max(1, value - 1)))
+    if n == 0:
+      break
+    if 0 <= (value - 1) - n <= power_of_ten - 1:
+      result += roman_numbers[power_of_ten]
+      result += symbol
+      n -= value - power_of_ten
+  return result
+
+
+print(int_to_roman(34))

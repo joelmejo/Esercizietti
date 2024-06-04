@@ -28,62 +28,19 @@
 # Given an integer, convert it to a Roman numeral.
 
 def intToRoman(num: int) -> str:
-    roman_numerals: list = [
-    ["I", 1],
-    ["V", 5],
-    ["X", 10],
-    ["L", 50],
-    ["C", 100],
-    ["D", 500],
-    ["M", 1000]
-    ]
+    roman_numerals: dict[int, str] = {
+    1: "I",
+    5: "V",
+    10: "X",
+    50: "L",
+    100: "C",
+    500: "D",
+    1000: "M"
+}
     roman: str= ""
     listed_num: list = list(str(num))
-    listed_num.reverse()
-    for i, j in zip(range(len(roman_numerals)), range(len(listed_num))):
-        if listed_num[j] in ['4', '9']:
-            if listed_num[j] == '4':
-                num -= (roman_numerals[i + 1][1] - roman_numerals[i][1])
-                roman = roman_numerals[i][0] + roman_numerals[i + 1][0] + roman
-            else:
-                num -= (roman_numerals[i + 2][1] - roman_numerals[i][1])
-                roman = roman_numerals[i][0] + roman_numerals[i + 2][0] + roman
-        else:
-            while num - roman_numerals[i][1] >= 0:
-                num -= roman_numerals[i][1]
-                roman += roman_numerals[i][0]
-    return roman
-
-
-
+    for value, symbol in reversed(roman_numerals.items()):
         
-        
-
-    #     listed_num: list = list(str(num))
-    #     if listed_num[0] in ['4', '9']:
-    #         listed_roman: list= list(str(roman_numerals[i][1]))
-    #         if listed_num[0] == '9':
-    #             if listed_roman[0] == '5':
-    #                 if num - roman_numerals[i + 1][1] < 0:
-    #                     if num - roman_numerals[i - 1][1] > 0:
-    #                         num -= (roman_numerals[i][1] - roman_numerals[i - 1][1])
-    #                         roman += roman_numerals[i - 1][0] + roman_numerals[i][0]
-    #                         continue
-    #             else:
-    #                 continue
-    #         else:
-    #             if listed_roman[0] == '1':
-    #                 if num - roman_numerals[i + 1][1] < 0:
-    #                     if num - roman_numerals[i - 1][1] > 0:
-    #                         num -= (roman_numerals[i + 1][1] - roman_numerals[i - 1][1])
-    #                         roman += roman_numerals[i - 1][0] + roman_numerals[i + 1][0]
-    #                         continue
-    #     else:
-    #         while num - roman_numerals[i][1] >= 0:
-    #             num -= roman_numerals[i][1]
-    #             roman += roman_numerals[i][0]
-    # return roman
-
       
 
 
